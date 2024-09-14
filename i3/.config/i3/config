@@ -226,7 +226,7 @@ client.placeholder      #d79921 #0c0c0c #ffffff #000000   #0c0c0c
 
 #exec setxkbmap hu
 exec numlockx on
-exec_always feh --bg-fill --randomize ~/Wallpapers/ 
+exec_always feh --bg-fill --randomize ~/dotfiles/wallpapers/ 
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id i3-msg 'workspace $ws2; exec firefox; workspace $ws1'
 exec --no-startup-id i3-msg 'workspace $ws1; exec kitty;'
