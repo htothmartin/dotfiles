@@ -114,8 +114,8 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: "
-set $ws2 "2: "
+set $ws1 "1"
+set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
@@ -123,7 +123,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "3: "
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -149,8 +149,8 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [class="firefox"] $ws2
-assign [class="kitty"] $ws1
+#assign [class="firefox"] $ws2
+#assign [class="kitty"] $ws1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -194,25 +194,46 @@ set $urgent-bg-color     #fb4934
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
- 
-       status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	font pango:System San Fransisco Display 14, FontAwesome 15
-	colors {
-		background $bg-color
-	    	separator $text-color
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-}
+#bar {
+#	tray_output primary
+# 	strip_workspace_numbers yes
+#      	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#	font pango:System San Fransisco Display 14, FontAwesome 15
+#	colors {
+#		background $bg-color
+#	    	separator $text-color
+#		#                  border             background         text
+#		focused_workspace  $bg-color          $bg-color          $text-color
+#		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#	}
+#}
+
+# screen brightness hotkeys
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 default_border pixel 0
+default_floating_border pixel 1
 
-exec setxkbmap hu
+# class                 border  backgr. text    indicator child_border
+client.focused          #d79921 #285577 #ffffff #2e9ef4   #d79921
+client.focused_inactive #d79921 #5f676a #ffffff #484e50   #d79921
+client.unfocused        #d79921 #222222 #888888 #292d2e   #d79921
+client.urgent           #d79921 #900000 #ffffff #900000   #900000
+client.placeholder      #d79921 #0c0c0c #ffffff #000000   #0c0c0c
+
+
+#exec setxkbmap hu
 exec numlockx on
-exec_always feh --bg-scale ~/Pictures/fuji-wallpaper.jpg 
+exec_always feh --bg-fill --randomize ~/Wallpapers/ 
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
-exec firefox
-exec kitty
+exec --no-startup-id i3-msg 'workspace $ws2; exec firefox; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws1; exec kitty;'
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
+exec --no-startup-id /usr/bin/cbatticon
+
+
+
