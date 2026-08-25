@@ -12,7 +12,7 @@ Personal dotfiles managed cleanly with **[GNU Stow](https://www.gnu.org/software
 * **Compositor:** [Picom](https://github.com/yshui/picom) (Smooth transitions and subtle transparency)
 * **Application Launcher:** [Rofi](https://github.com/davatorium/rofi) (Material & Nordic themed launcher)
 * **Wallpaper Manager:** [feh](https://feh.finalrewind.org/) with multi-wallpaper randomizer
-* **Audio & Power:** PulseAudio controls with `pasystray` and `cbatticon` tray applets
+* **Audio & Power:** PipeWire (`pipewire-pulse`) audio management with `pavucontrol`, `pasystray`, and `cbatticon` tray applets
 
 ---
 
@@ -71,7 +71,11 @@ sudo pacman -S --needed \
     xss-lock \
     i3lock \
     network-manager-applet \
-    pulseaudio-ctl \
+    pipewire \
+    pipewire-pulse \
+    pipewire-alsa \
+    wireplumber \
+    pavucontrol \
     pasystray \
     cbatticon
 
@@ -101,6 +105,10 @@ sudo apt install -y \
     network-manager-gnome \
     fonts-font-awesome \
     fonts-jetbrains-mono \
+    pipewire \
+    pipewire-pulse \
+    wireplumber \
+    pavucontrol \
     pasystray \
     cbatticon
 ```
@@ -124,6 +132,10 @@ sudo dnf install -y \
     NetworkManager-applet \
     fontawesome-fonts-all \
     jetbrains-mono-fonts-all \
+    pipewire \
+    pipewire-pulseaudio \
+    wireplumber \
+    pavucontrol \
     pasystray \
     cbatticon
 ```
